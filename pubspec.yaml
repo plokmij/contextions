@@ -1,6 +1,6 @@
 name: contextions
 description: A Flutter package that adds extension methods on BuildContext for easy access to Navigator, Theme, and MediaQuery functions.
-version: 0.0.1
+version: 0.1.0
 homepage: https://github.com/plokmij/contextions
 
 environment:
