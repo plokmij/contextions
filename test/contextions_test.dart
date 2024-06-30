@@ -11,6 +11,7 @@ void main() {
           body: Center(
             child: ElevatedButton(
               onPressed: () {
+                // ignore: deprecated_member_use_from_same_package
                 context.navigateTo(TestPage());
               },
               child: Text('Navigate'),
@@ -28,6 +29,33 @@ void main() {
     await tester.tap(find.text('Navigate'));
     await tester.pumpAndSettle();
 
+    // New page should contain 'Test Page'
+    expect(find.text('Home'), findsNothing);
+    expect(find.text('Test Page'), findsOneWidget);
+  });
+
+  testWidgets('Navigate to a new page using context.to', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Builder(
+        builder: (context) => Scaffold(
+          appBar: AppBar(title: Text('Home')),
+          body: Center(
+            child: ElevatedButton(
+              onPressed: () {
+                context.to(TestPage());
+              },
+              child: Text('Navigate'),
+            ),
+          ),
+        ),
+      ),
+    ));
+    // Initial page should contain 'Home'
+    expect(find.text('Home'), findsOneWidget);
+    expect(find.text('Test Page'), findsNothing);
+    // Tap the button and trigger a frame
+    await tester.tap(find.text('Navigate'));
+    await tester.pumpAndSettle();
     // New page should contain 'Test Page'
     expect(find.text('Home'), findsNothing);
     expect(find.text('Test Page'), findsOneWidget);
