@@ -1,16 +1,10 @@
-## Changes in version 0.1.0
+## [0.1.0] - 2024-06-30
 
-### Deprecation Notice
+### Added
+- `to`: A new method that replaces `navigateTo`.
 
-The method `navigateTo` is now deprecated. Please use `to` instead. Here is how you can update your code:
-
-```dart
-// Old usage
-context.navigateTo(YourPage());
-
-// New usage
-context.to(YourPage());
-```
+### Deprecated
+- `navigateTo`: This method is now deprecated and will be removed in a future version. Use `to` instead.
 
 ## 0.0.1
 
