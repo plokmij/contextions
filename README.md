@@ -9,7 +9,7 @@ Contextions is a Flutter package which makes use of extension methods on BuildCo
 Easily navigate to new pages and manage navigation stack:
 
 ```dart
-context.navigateTo(YourPage());
+context.to(YourPage());
 context.navigateAndReplace(YourPage());
 context.pop();
 ```
