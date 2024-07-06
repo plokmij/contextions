@@ -126,4 +126,45 @@ extension ContextExtensions on BuildContext {
       delegate: delegate,
     );
   }
+
+  /// Show a dialog with the given message.
+  /// The [title] argument is used to set the title of the dialog.
+  /// The [content] argument is used to set the content of the dialog.
+  /// The [actions] argument is used to set the actions of the dialog.
+  /// The [barrierDismissible] argument is used to determine if the dialog can be dismissed by tapping on the scrim.
+  /// The [useRootNavigator] argument is used to determine if the dialog should be displayed above the nearest Navigator.
+  /// The [routeSettings] argument is used to set the route settings of the dialog.
+  /// The [barrierColor] argument is used to set the color of the scrim.
+  /// The [barrierLabel] argument is used to set the semantic label of the scrim.
+  /// The [transitionDuration] argument is used to set the duration of the dialog animation.
+  ///  
+  /// The [transitionBuilder] argument is used to set the transition builder of the dialog.
+  /// The [useSafeArea] argument is used to determine if the dialog should be displayed within the safe area.
+  Future<T?> showDialogXY<T>({
+    String? title,
+    String? content,
+    List<Widget>? actions,
+    bool barrierDismissible = true,
+    bool useRootNavigator = true,
+    RouteSettings? routeSettings,
+    Color? barrierColor,
+    String? barrierLabel,
+    bool useSafeArea = true,
+  }) {
+    return showDialog<T>(
+      context: this,
+      builder: (context) => AlertDialog(
+        title: title != null ? Text(title) : null,
+        content: content != null ? Text(content) : null,
+        actions: actions,
+      ),
+      barrierDismissible: barrierDismissible,
+      useRootNavigator: useRootNavigator,
+      routeSettings: routeSettings,
+      barrierColor: barrierColor,
+      barrierLabel: barrierLabel,
+      useSafeArea: useSafeArea,
+    );
+  }
+
 }
