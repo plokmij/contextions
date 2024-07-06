@@ -39,7 +39,7 @@ context.showSnackbar('Message');
 Display dialogs with custom content and actions:
 
 ```dart
-context.showDialog(
+context.showDialogX(
   AlertDialog(
     title: Text('Dialog Title'),
     content: Text('Dialog Content'),
@@ -60,6 +60,74 @@ Open and close the drawer:
 ```dart
 context.openDrawer();
 context.closeDrawer();
+```
+
+### Modal Bottom Sheet
+
+Show a modal bottom sheet:
+
+```dart
+context.showModalBottomSheetX(
+  Container(
+    child: Text('Bottom Sheet Content'),
+  ),
+);
+```
+
+### Bottom Sheet
+
+Show a customizable bottom sheet:
+
+```dart
+context.showBottomSheetX(
+  builder: (BuildContext context) => Container(
+    child: Text('Custom Bottom Sheet Content'),
+  ),
+);
+```
+
+### Search
+
+Show a search interface:
+
+```dart
+context.showSearchX(
+  delegate: CustomSearchDelegate(),
+);
+```
+
+### Dialog with Custom Content and Actions
+
+Show a dialog with custom content and actions:
+
+```dart
+context.showDialogXY(
+  title: 'Custom Dialog Title',
+  content: 'Custom Dialog Content',
+  actions: [
+    TextButton(
+      onPressed: () => context.pop(),
+      child: Text('OK'),
+    ),
+  ],
+);
+```
+
+### Keyboard Visibility
+
+Check if the keyboard is visible:
+
+```dart
+bool isKeyboardVisible = context.isKeyboardVisible;
+```
+
+### Screen Orientation
+
+Check if the screen is in landscape or portrait mode:
+
+```dart
+bool isLandscape = context.isLandscape;
+bool isPortrait = context.isPortrait;
 ```
 
 ### Example
