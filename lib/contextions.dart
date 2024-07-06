@@ -16,8 +16,14 @@ extension ContextExtensions on BuildContext {
   }
 
   /// Navigate to a new page and replace the current page.
+  @Deprecated('Use replace() instead.')
   void navigateAndReplace(Widget page) {
     Navigator.pushReplacement(this, MaterialPageRoute(builder: (_) => page));
+  }
+
+  /// Navigate to a new page and replace the current page.
+  Future<T?> replace<T extends Object?, TO extends Object?>(Widget page) async {
+    return Navigator.pushReplacement<T, TO>(this, MaterialPageRoute(builder: (_) => page));
   }
 
   /// Pop the current page off the navigator stack.
