@@ -167,4 +167,22 @@ extension ContextExtensions on BuildContext {
     );
   }
 
+  /// Check if the keyboard is visible.
+  /// Returns true if the keyboard is visible, false otherwise.
+  bool get isKeyboardVisible {
+    return MediaQuery.of(this).viewInsets.bottom > 0;
+  }
+
+  /// Check if screen is in landscape mode.
+  /// Returns true if the screen is in landscape mode, false otherwise.
+  bool get isLandscape {
+    return MediaQuery.of(this).orientation == Orientation.landscape;
+  }
+
+  /// Check if screen is in portrait mode.
+  /// Returns true if the screen is in portrait mode, false otherwise.
+  bool get isPortrait {
+    return MediaQuery.of(this).orientation == Orientation.portrait;
+  }
+
 }
