@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// Extension methods on BuildContext to provide easy access to Navigator, Theme, MediaQuery, and ScaffoldMessenger functions.
 extension ContextExtensions on BuildContext {
   /// Navigate to a new page.
-  @deprecated
+  @Deprecated('Use to() instead.')
   void navigateTo(Widget page) {
     Navigator.push(this, MaterialPageRoute(builder: (_) => page));
   }
