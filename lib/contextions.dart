@@ -11,8 +11,8 @@ extension ContextExtensions on BuildContext {
   }
 
   /// Navigate to a new page.
-  void to(Widget page) {
-    Navigator.push(this, MaterialPageRoute(builder: (_) => page));
+  Future<T?> to<T>(Widget page) async{
+    return Navigator.push<T?>(this, MaterialPageRoute(builder: (_) => page));
   }
 
   /// Navigate to a new page and replace the current page.
@@ -69,5 +69,13 @@ extension ContextExtensions on BuildContext {
   /// Close the drawer if it's open.
   void closeDrawer() {
     Navigator.pop(this);
+  }
+
+  /// Show a modal bottom sheet.
+  Future<T?> showModalBottomSheetX<T>(Widget sheet) {
+    return showModalBottomSheet<T>(
+      context: this,
+      builder: (context) => sheet,
+    );
   }
 }
