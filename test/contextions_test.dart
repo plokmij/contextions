@@ -206,6 +206,45 @@ void main() {
     // Search delegate should be opened
     expect(find.byKey(Key('delegate-back-button')), findsOneWidget);
   });
+
+  testWidgets('Show Dialog with custom arguments', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Builder(
+        builder: (context) => Scaffold(
+          appBar: AppBar(title: Text('Home')),
+          body: Center(
+            child: ElevatedButton(
+              onPressed: () {
+                context.showDialogXY(
+                  title: 'Custom Dialog Title',
+                  content: 'Custom Dialog Content',
+                  actions: [
+                    TextButton(
+                      onPressed: () => context.pop(),
+                      child: Text('OK'),
+                    ),
+                  ],
+                );
+              },
+              child: Text('Show Custom Dialog'),
+            ),
+          ),
+        ),
+      ),
+    ));
+    // Tap the button and trigger a frame
+    await tester.tap(find.text('Show Custom Dialog'));
+    await tester.pumpAndSettle();
+    // Custom Dialog should be visible
+    expect(find.text('Custom Dialog Title'), findsOneWidget);
+    expect(find.text('Custom Dialog Content'), findsOneWidget);
+    // Tap the OK button and close the dialog
+    await tester.tap(find.text('OK'));
+    await tester.pumpAndSettle();
+    // Dialog should be dismissed
+    expect(find.text('Custom Dialog Title'), findsNothing);
+    expect(find.text('Custom Dialog Content'), findsNothing);
+  });
 }
 
 // Dummy page for navigation test
