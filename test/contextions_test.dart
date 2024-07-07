@@ -181,6 +181,31 @@ void main() {
     // Drawer should be closed
     expect(find.text('Drawer Content'), findsNothing);
   });
+
+  testWidgets('Show Search Delegate', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Builder(
+        builder: (context) => Scaffold(
+          appBar: AppBar(title: Text('Home')),
+          body: Center(
+            child: ElevatedButton(
+              onPressed: () {
+                context.showSearchX(
+                  delegate: CustomSearchDelegate(),
+                );
+              },
+              child: Text('Show Search Delegate'),
+            ),
+          ),
+        ),
+      ),
+    ));
+    // Tap the button and trigger a frame
+    await tester.tap(find.text('Show Search Delegate'));
+    await tester.pumpAndSettle();
+    // Search delegate should be opened
+    expect(find.byKey(Key('delegate-back-button')), findsOneWidget);
+  });
 }
 
 // Dummy page for navigation test
@@ -193,4 +218,22 @@ class TestPage extends StatelessWidget {
       body: Center(child: Text('Test Body')),
     );
   }
+}
+
+class CustomSearchDelegate extends SearchDelegate {
+  @override
+  Widget buildLeading(BuildContext context) => IconButton(
+        key: Key('delegate-back-button'),
+        icon: Icon(Icons.arrow_back),
+        onPressed: () => close(context, null),
+      );
+
+  @override
+  Widget buildResults(BuildContext context) => Container();
+
+  @override
+  Widget buildSuggestions(BuildContext context) => Container();
+
+  @override
+  List<Widget> buildActions(BuildContext context) => [];
 }
