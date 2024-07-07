@@ -182,6 +182,37 @@ void main() {
     expect(find.text('Drawer Content'), findsNothing);
   });
 
+  testWidgets('Show Bottom Sheet', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Builder(
+        builder: (context) => Scaffold(
+          appBar: AppBar(title: Text('Home')),
+          body: Center(
+            child: ElevatedButton(
+              onPressed: () {
+                context.showBottomSheetX(
+                  builder: (BuildContext context) => Container(
+                    height: 200,
+                    color: Colors.white,
+                    child: Center(
+                      child: Text('Bottom Sheet Content'),
+                    ),
+                  ),
+                );
+              },
+              child: Text('Show Bottom Sheet'),
+            ),
+          ),
+        ),
+      ),
+    ));
+    // Tap the button and trigger a frame
+    await tester.tap(find.text('Show Bottom Sheet'));
+    await tester.pumpAndSettle();
+    // Bottom Sheet should be visible
+    expect(find.text('Bottom Sheet Content'), findsOneWidget);
+  });
+
   testWidgets('Show Search Delegate', (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Builder(
