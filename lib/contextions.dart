@@ -23,7 +23,8 @@ extension ContextExtensions on BuildContext {
 
   /// Navigate to a new page and replace the current page.
   Future<T?> replace<T extends Object?, TO extends Object?>(Widget page) async {
-    return Navigator.pushReplacement<T, TO>(this, MaterialPageRoute(builder: (_) => page));
+    return Navigator.pushReplacement<T, TO>(
+        this, MaterialPageRoute(builder: (_) => page));
   }
 
   /// Pop the current page off the navigator stack.
@@ -124,7 +125,7 @@ extension ContextExtensions on BuildContext {
   }
 
   /// Show search
- Future<T?> showSearchX<T>({
+  Future<T?> showSearchX<T>({
     required SearchDelegate<T> delegate,
   }) {
     return showSearch<T>(
@@ -143,7 +144,7 @@ extension ContextExtensions on BuildContext {
   /// The [barrierColor] argument is used to set the color of the scrim.
   /// The [barrierLabel] argument is used to set the semantic label of the scrim.
   /// The [transitionDuration] argument is used to set the duration of the dialog animation.
-  ///  
+  ///
   /// The [transitionBuilder] argument is used to set the transition builder of the dialog.
   /// The [useSafeArea] argument is used to determine if the dialog should be displayed within the safe area.
   Future<T?> showDialogXY<T>({
@@ -190,5 +191,4 @@ extension ContextExtensions on BuildContext {
   bool get isPortrait {
     return MediaQuery.of(this).orientation == Orientation.portrait;
   }
-
 }

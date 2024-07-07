@@ -34,7 +34,8 @@ void main() {
     expect(find.text('Test Page'), findsOneWidget);
   });
 
-  testWidgets('Navigate to a new page using context.to', (WidgetTester tester) async {
+  testWidgets('Navigate to a new page using context.to',
+      (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Builder(
         builder: (context) => Scaffold(
