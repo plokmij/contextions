@@ -34,6 +34,33 @@ void main() {
     expect(find.text('Test Page'), findsOneWidget);
   });
 
+  testWidgets('Navigate to a new page and replace the current page using context.replace', (WidgetTester tester) async {
+  await tester.pumpWidget(MaterialApp(
+    home: Builder(
+      builder: (context) => Scaffold(
+        appBar: AppBar(title: Text('Home')),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              context.replace(TestPage());
+            },
+            child: Text('Replace Page'),
+          ),
+        ),
+      ),
+    ),
+  ));
+  // Initial page should contain 'Home'
+  expect(find.text('Home'), findsOneWidget);
+  expect(find.text('Test Page'), findsNothing);
+  // Tap the button and trigger a frame
+  await tester.tap(find.text('Replace Page'));
+  await tester.pumpAndSettle();
+  // New page should contain 'Test Page' and 'Home' should not be found
+  expect(find.text('Home'), findsNothing);
+  expect(find.text('Test Page'), findsOneWidget);
+});
+
   testWidgets('Navigate to a new page using context.to',
       (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(
